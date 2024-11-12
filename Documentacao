@@ -1,0 +1,118 @@
+Simulador de Processo Blockchain
+
+Este projeto tem como objetivo simular o processo de venda de um produto via blockchain, destacando as etapas envolvidas desde a criação da oferta até a transferência de propriedade entre o vendedor e o comprador. A ferramenta é interativa e inclui animações que simulam o fluxo de dados no blockchain, ajudando os usuários a visualizar o processo de forma clara e intuitiva.
+
+## Tecnologias Utilizadas
+
+- "HTML5": Estrutura da página web.
+- "CSS3": Estilo e animações.
+- "JavaScript (Vanilla)": Lógica de controle das etapas e animações.
+- "Font Awesome": Ícones utilizados para o design visual.
+
+## Funcionalidades
+
+- "Simulação do Processo de Venda": A simulação segue as etapas típicas de uma transação blockchain, incluindo:
+  - Criação da oferta
+  - Aceitação da oferta
+  - Transmissão para a rede
+  - Validação da transação
+  - Confirmação da transação
+  - Transferência de propriedade
+  
+- "Animação de Bolinhas de Carregamento": As bolinhas animadas movem-se entre as etapas, representando o envio de dados entre os nós da rede.
+  
+- "Controle de Navegação":
+  - "Iniciar Loop": Inicia a simulação automática do processo de venda.
+  - "Próximo/Anterior": Navegação manual pelas etapas.
+  - "Parar": Interrompe a execução do processo.
+  - "Voltar": Redireciona para a página inicial.
+
+## Instalação
+
+Para rodar o projeto localmente em sua máquina, siga os passos abaixo:
+
+### Pré-requisitos
+
+- Um navegador moderno (Google Chrome, Firefox, Safari, etc.).
+
+### Passo 1: Clone o repositório
+
+```bash
+git clone https://github.com/TKjoao/Simulador_Blockchain.git
+```
+
+### Passo 2: Acesse a pasta do projeto
+
+```bash
+cd Blockchain
+```
+
+### Passo 3: Abra o arquivo `index.html`
+
+Basta abrir o arquivo `index.html` em seu navegador para iniciar o simulador.
+
+---
+
+## Como Usar
+
+1. **Iniciar a Simulação**: Clique no botão **Iniciar Loop** para começar a simulação automática do processo de venda. O simulador avançará por cada etapa com uma animação de bolinhas de carregamento.
+  
+2. **Navegação Manual**: Você pode usar os botões **Próximo** e **Anterior** para navegar manualmente entre as etapas do processo.
+   
+3. **Parar a Simulação**: Caso queira interromper a simulação, clique em **Parar** para desmarcar todas as etapas.
+
+4. **Voltar para a Página Inicial**: Para retornar à tela inicial, clique no botão **Voltar**.
+
+---
+
+## Estrutura de Arquivos
+
+A estrutura do projeto é organizada da seguinte maneira:
+
+```
+/Blockchain
+│
+├─ Visualmente                                           # subpasta para demonstração
+├───── simulador_compra.html                             # Tela de simulação de compra 
+├───── simulador_inicio.html                             # Menu inicial para as telas de compra ou venda   
+├───── simulador_venda.html                              # Tela de simulação de venda 
+├──────────────────────────── inicio.html                # Página principal do simulador
+├──────────────────────────── styles_inicio.css          # Arquivo de estilos da tela de inicio
+├──────────────────────────── script.js                  # Lógica JavaScript para animações e controle das etapas
+├──────────────────────────── admin.html                 # Tela de admin
+├──────────────────────────── styles_admin.css           # estilo da tela de admin
+|──────────────────────────── usuario.html               # tela de usuario
+|──────────────────────────── usuario_usuario.css        # estilo da tela de usuario
+
+└──────────────────────────── README.md                  # Este arquivo
+└──────────────────────────── Documentacao.md            # Este arquivo
+```
+
+---
+
+## Contribuindo
+
+Se você deseja contribuir para o projeto, siga os passos abaixo:
+
+1. **Fork** o repositório.
+2. Crie uma nova **branch** para suas alterações (`git checkout -b minha-branch`).
+3. Faça as modificações desejadas.
+4. Envie as alterações para o seu repositório (`git push origin minha-branch`).
+5. Abra um **Pull Request** para revisão.
+
+---
+
+## Licença
+
+Este projeto é de código aberto e distribuído sob a licença [MIT](LICENSE).
+
+---
+
+## Agradecimentos
+
+- **Font Awesome** pela excelente biblioteca de ícones.
+- **Todas as contribuições** que ajudam a melhorar este projeto.
+
+---
+
+Essa documentação ela fornece uma visão geral completa do projeto, instruções de uso, contribuições e detalhes técnicos.
