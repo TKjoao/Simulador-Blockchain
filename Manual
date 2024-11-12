@@ -1,0 +1,126 @@
+Manual de Uso: Simulador de Processo de Venda via Blockchain
+
+## Introdução
+
+O **Simulador de Processo de Venda via Blockchain** é uma ferramenta interativa que permite visualizar o fluxo de um processo de venda, desde a criação da oferta até a transferência de propriedade entre o vendedor e o comprador. Através dessa simulação, os usuários podem entender como as transações funcionam em uma rede blockchain.
+
+Este simulador utiliza animações e interações para representar de forma clara o progresso das etapas do processo de venda.
+
+---
+
+## Requisitos
+
+- Navegador da Web (Google Chrome, Firefox, Safari, etc.).
+- Conexão à internet para carregar a biblioteca de ícones Font Awesome.
+
+---
+
+## Interface do Usuário
+
+### Botões de Controle
+1. Iniciar Loop:
+   - Função: Inicia a animação do processo de venda, avançando automaticamente pelas etapas do processo.
+   - Posição: Localizado no canto superior esquerdo da página.
+   - Comportamento: Ao clicar, o simulador começa a avançar automaticamente pelas etapas com uma animação de bolinhas de carregamento.
+   
+2. Voltar:
+   - Função: Redireciona o usuário de volta para a página de início do simulador (`simulador_inicio.html`).
+   - Posição: Localizado no canto superior central da página.
+
+3. Parar:
+   - Função: Interrompe o processo de loop, parando a progressão automática das etapas.
+   - Posição: Localizado no canto superior direito da página.
+
+4. Next (Próximo):
+   - Função: Avança para a próxima etapa manualmente.
+   - Posição: Localizado à direita do botão "Iniciar Loop".
+   - Comportamento: Ao clicar, a etapa atual é destacada, e o processo avança para a próxima.
+
+5. Prev (Anterior):
+   - Função: Retrocede para a etapa anterior manualmente.
+   - Posição: Localizado à esquerda do botão "Parar".
+   - Comportamento: Ao clicar, a etapa atual é desmarcada e a etapa anterior é destacada.
+
+---
+
+### Etapas do Processo de Venda
+As etapas são representadas por blocos visuais na tela e incluem as seguintes fases:
+
+1. Criação da Oferta:
+   - O vendedor cria uma oferta de venda.
+   
+2. Aceitação da Oferta:
+   - O comprador aceita a oferta e cria a transação.
+
+3. Transmissão para a Rede:
+   - A transação é propagada para os nós da rede.
+
+4. Validação:
+   - A transação é validada por mineradores ou validadores.
+
+5. Confirmação:
+   - A transação é confirmada e registrada no blockchain.
+
+6. Transferência de Propriedade:
+   - A propriedade é transferida do vendedor para o comprador.
+
+Cada etapa é representada por um bloco com uma breve descrição do que ocorre, acompanhado por uma animação de bolinhas verdes que simula o carregamento do processo.
+
+---
+
+## Interatividade e Animações
+1. Bolinha de Carregamento:
+   - Durante a execução do processo, as bolinhas de carregamento são exibidas ao lado de cada etapa.
+   - Elas são animadas para se mover alternadamente, representando o "passo de dados" entre os nós do blockchain.
+
+2. Transição entre Etapas:
+   - Quando o processo avança para a próxima etapa (automática ou manualmente), a etapa anterior fica desmarcada e a nova etapa recebe destaque visual, ficando com o fundo verde e as bolinhas de carregamento se escondem.
+
+---
+
+## Funções e Comportamento do Sistema
+
+### Iniciar Loop
+- Ao clicar no botão Iniciar Loop, o simulador começa a simular automaticamente o processo de venda. Ele avança de forma contínua de uma etapa para outra, com uma pausa de 4 segundos entre as transições. As bolinhas de carregamento aparecem ao lado de cada etapa enquanto o processo está em progresso.
+- A simulação se repete desde o início após a última etapa.
+
+### Parar
+- O botão "Parar" interrompe imediatamente o loop, desmarcando todas as etapas e ocultando as bolinhas de carregamento.
+
+### Próximo e Anterior
+- Ao usar os botões "Next" e "Prev", você pode navegar manualmente pelas etapas do processo. Clicar em "Next" avança para a próxima etapa, enquanto "Prev" retrocede para a etapa anterior.
+- As etapas seguem um ciclo contínuo, ou seja, ao chegar à última etapa, o próximo clique no botão "Next" levará à primeira etapa novamente. O mesmo ocorre ao voltar com o botão "Prev", que leva da primeira etapa à última.
+
+### Retorno à Página Inicial
+- Ao clicar no botão "Voltar", o usuário será redirecionado para a página de início, onde o simulador pode ser reiniciado.
+
+---
+
+## "Comportamento da Animação"
+1. "Bolinhas de Carregamento": 
+   - As bolinhas são exibidas dentro de um contêiner ao lado de cada bloco de etapa e possuem uma animação que move as bolinhas de um lado para o outro.
+   - Quando a etapa é destacada (passa a ser a "ativa"), a animação das bolinhas é visível. Depois que o carregamento de 3 segundos se conclui, as bolinhas desaparecem.
+
+2. "Transição Visual das Etapas":
+   - As etapas começam com uma opacidade de 50% (mais escuras) e ficam completamente visíveis com 100% de opacidade quando se tornam a etapa ativa.
+   - A cor de fundo de cada bloco também muda para verde quando a etapa se torna ativa.
+
+---
+
+## Erros Comuns e Soluções
+1. "O processo não está avançando automaticamente":
+   - Certifique-se de que o botão "Iniciar Loop" foi pressionado. Se o botão "Parar" foi pressionado, o processo será interrompido. Clique novamente em "Iniciar Loop" para reiniciar.
+   
+2. "A navegação manual não está funcionando corretamente":
+   - Verifique se o botão "Parar" foi pressionado. A navegação manual via "Next" e "Prev" pode ser afetada se o loop automático não foi parado adequadamente.
+
+---
+
+## Conclusão
+Este simulador é uma excelente ferramenta para demonstrar de forma simples e visual como uma transação via blockchain acontece em diferentes etapas, desde a criação da oferta até a transferência de propriedade. A interface interativa permite uma compreensão mais clara e engajante do processo.
+
+Se você tiver alguma dúvida ou sugestão de melhoria, entre em contato com os desenvolvedores do simulador.
+
+---
+
+Esse manual pode ser alterado conforme novos recursos ou ajustes sejam feitos no simulador.
