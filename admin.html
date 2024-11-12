@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador</title>
+    <link rel="stylesheet" href="styles_admin.css">  
+</head>
+<body class="admin-page">
+    <h1>Painel do Administrador</h1>
+    <textarea id="data1" disabled></textarea>
+    <textarea id="data2" disabled></textarea>
+    <textarea id="data3" disabled></textarea>
+    
+    <div class="button-container">
+        <button class="circle-button" onclick="enableEditing()">Editar</button>
+        <button class="circle-button" onclick="saveData()">Salvar</button>
+        <button class="circle-button" onclick="checkIntegrity()">Verificar Integridade</button>
+        <button class="circle-button" onclick="deleteBlock()">Excluir Blocos</button>
+        <button class="circle-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function goBack() {
+            window.location.href = 'inicio.html';
+        }
+    </script>
+</body>
+</html>
