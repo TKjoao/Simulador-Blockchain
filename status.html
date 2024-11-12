@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status</title>
+    <link rel="stylesheet" href="styles.css">  
+    <style>
+        /* Estilos para a página de status */
+        body {
+            background-color: #000;
+            color: #00ff41;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .status-message {
+            font-size: 24px;
+            padding: 20px;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .integrity {
+            color: #00ff41; /* Verde para dados íntegros */
+        }
+
+        .compromised {
+            color: #ff0033; /* Vermelho para dados comprometidos */
+        }
+
+        .circle-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #111;
+            color: #00ff41;
+            font-size: 16px;
+            border: 2px solid #00ff41;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body class="status-page">
+
+    <div id="status-container" class="status-message"></div> <!-- Contêiner para mensagem de status -->
+
+    <div class="button-container">
+        <button class="circle-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <script>
+        // Função para obter a mensagem do URL
+        function getStatusMessage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('status') || "Sem status"; // Mensagem padrão se não houver status
+        }
+
+        // Função para aplicar a mensagem e a classe correta
+        function displayStatus() {
+            const statusMessage = getStatusMessage();
+            const messageElement = document.getElementById('status-container'); // Obtém o contêiner existente
+
+            // Verifica o status e aplica a classe correspondente
+            if (statusMessage === "DADOS ÍNTEGROS") {
+                messageElement.classList.add("integrity");
+            } else {
+                messageElement.classList.add("compromised");
+            }
+
+            messageElement.textContent = statusMessage; // Define o texto da mensagem
+        }
+
+        function goBack() {
+            window.location.href = "inicio.html"; // Redireciona para a tela inicial
+        }
+
+        // Chama a função ao carregar a página
+        window.onload = displayStatus;
+    </script>
+</body>
+</html>
