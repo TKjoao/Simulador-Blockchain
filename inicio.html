@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <link rel="stylesheet" href="styles_inicio.css">
+</head>
+<body>
+    <h1 class="title">Bem-vindo ao Sistema</h1>
+    <div class="button-container">
+        <button class="circle-button" onclick="goToUserPage()">Usuário</button>
+        <button class="circle-button" onclick="promptAdminPassword()">Administrador</button>
+        <button class="circle-button" onclick="Simulador()">Simulador</button>
+        
+    </div>
+</body>
+    <script src="script.js"></script>
+    <script>
+        function Simulador() {
+            window.location.href = 'simulador_inicio.html';
+}
+
+        function goToUserPage() {
+            window.location.href = 'usuario.html';
+        }
+        function promptAdminPassword() {
+            const password = prompt("Por favor, insira a senha do administrador:");
+            const correctPassword = "asdf"; 
+            if (password === correctPassword) {
+                window.location.href = 'admin.html'; 
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
+    </script>
+</body>
+</html>
