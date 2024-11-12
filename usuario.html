@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Usuário</title>
+    <link rel="stylesheet" href="styles_usuario.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="user-page">
+    <h1>Painel do Usuário</h1>
+    
+    <div class="data-block">
+        <h2>Dados do Bloco 1</h2>
+        <h2>hash:hSyfupxY ​</h2>
+    
+        <textarea id="data1" disabled></textarea>
+    </div>
+    
+    <div class="data-block">
+        <h2>Dados do Bloco 2</h2>
+        <h2>hash:9t7tFjmr</h2>
+        <textarea id="data2" disabled></textarea>
+    </div>
+    
+    <div class="data-block">
+        <h2>Dados do Bloco 3</h2>
+        <h2>hash:RM4sGP1Y</h2>
+        <textarea id="data3" disabled></textarea>
+    </div>
+
+    <div class="button-container">
+        <button class="circle-button" onclick="checkIntegrity()">Verificar Integridade</button>
+        <button class="circle-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <script>
+        // Função para voltar à tela inicial
+        function goBack() {
+            window.location.href = "inicio.html"; // Redireciona para a tela inicial
+        }
+    </script>
+</body>
+</html>
