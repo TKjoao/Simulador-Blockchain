@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Processo de Compra via Blockchain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos gerais */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e1e1e;
+            color: #00ff41;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Botões de controle */
+        .simulate-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .next-button {
+            position: absolute;
+            top: 10px;
+            left: calc(20px + 150px); /* Ajuste para posicionar ao lado do botão Iniciar */
+            width: 100px;
+            height: 100px;
+            padding: 0;
+            background-color: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-size: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 78px;
+            margin: 0 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: calc(50% - 50px); /* Centraliza o botão no meio */
+            padding: 10px 20px;
+            background-color: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-size: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .prev-button {
+            position: absolute;
+            top: 10px;
+            right: calc(20px + 150px); /* Ajuste para posicionar à esquerda do botão Parar */
+            width: 100px;
+            height: 100px;
+            padding: 0;
+            background-color: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-size: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 78px;
+            margin: 0 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .stop-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #111;
+            border: 2px solid #00ff41;
+            color: #00ff41;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Efeitos de hover */
+        .simulate-button:hover, .stop-button:hover, .back-button:hover, .next-button:hover, .prev-button:hover {
+            background-color: #333;
+            color: #03A062;
+            box-shadow: 0 0 10px rgba(11, 151, 25, 0.8);
+        }
+
+
+        /* Contêiner horizontal para as etapas do processo de compra */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 90%;
+            margin-top: 20px;
+        }
+
+        /* Estilo dos blocos de etapas */
+        .step {
+            width: 200px;
+            padding: 20px;
+            background-color: #333;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: relative;
+            opacity: 0.5; /* Inicialmente mais opaco */
+            transition: opacity 0.5s ease, background-color 0.5s ease;
+        }
+
+        /* Bolinhas de carregamento */
+        .dot-container {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            display: flex;
+            transform: translateY(-50%);
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00ff41;
+            border-radius: 50%;
+            animation: dotMove 0.6s infinite alternate;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Animação das bolinhas */
+        @keyframes dotMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(10px); }
+        }
+
+        /* Bloco ativo após carregamento */
+        .active {
+            opacity: 1;
+            background-color: #00ff41;
+            color: #1e1e1e;
+        }
+
+        .active .dot-container {
+            opacity: 1; /* Aparece quando o bloco está em modo de carregamento */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botões -->
+    <button class="simulate-button" onclick="startLoop()">Iniciar Loop</button>
+    <button class="back-button" onclick="goBack()">Voltar</button>
+    <button class="stop-button" onclick="stopLoop()">Parar</button>
+    <button class="next-button" onclick="nextStep()">Next</button>
+    <button class="prev-button" onclick="prevStep()">Prev</button>
+
+
+    <!-- Contêiner de etapas -->
+    <div class="steps-container">
+        <div class="step" id="step1">
+            <i class="fas fa-pen"></i>
+            <h3>1. Criação da Transação</h3>
+            <p>Você cria e assina a transação com sua chave privada.</p>
+            <div class="dot-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <i class="fas fa-satellite-dish"></i>
+            <h3>2. Transmissão para a Rede</h3>
+            <p>A transação é propagada para os nós da rede.</p>
+            <div class="dot-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <i class="fas fa-check-circle"></i>
+            <h3>3. Validação</h3>
+            <p>A transação é validada por mineradores ou validadores.</p>
+            <div class="dot-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <i class="fas fa-handshake"></i>
+            <h3>4. Confirmação</h3>
+            <p>A transação é confirmada e registrada no blockchain.</p>
+            <div class="dot-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <i class="fas fa-satellite-dish"></i>
+            <h3>5. Transferência de Propriedade</h3>
+            <p>O vendedor recebe a criptomoeda e a compra é concluída.</p>
+            <div class="dot-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <!-- Adicione mais etapas conforme necessário -->
+    </div>
+
+    <script>
+        let interval;
+        let currentStep = 0;
+
+        function startLoop() {
+            const steps = document.querySelectorAll('.step');
+            currentStep = 0;
+
+            interval = setInterval(() => {
+                // Remove o estilo 'active' do bloco anterior após o carregamento
+                if (currentStep > 0) {
+                    steps[currentStep - 1].classList.remove('active');
+                }
+
+                // Adiciona o estilo 'active' com atraso para simular o carregamento
+                const currentDotContainer = steps[currentStep].querySelector('.dot-container');
+                currentDotContainer.style.opacity = "1"; // Exibe as bolinhas
+
+                // Define o tempo de carregamento das bolinhas antes de destacar o bloco
+                setTimeout(() => {
+                    steps[currentStep].classList.add('active');
+                    currentDotContainer.style.opacity = "0"; // Esconde as bolinhas
+                }, 3000); // Ajuste para o tempo de carregamento
+
+                currentStep++;
+
+                if (currentStep === steps.length) {
+                    currentStep = 0;
+                }
+            }, 4000);
+        }
+
+        function stopLoop() {
+            clearInterval(interval);
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+                step.querySelector('.dot-container').style.opacity = "0";
+            });
+        }
+        let currentManualStep = 0; // Variável para rastrear o passo atual manual
+
+        // Função para avançar para o próximo bloco
+        function nextStep() {
+            const steps = document.querySelectorAll('.step');
+            // Remove a classe 'active' do bloco atual
+            steps[currentManualStep].classList.remove('active');
+
+            // Incrementa o passo, voltando ao início se chegar ao último bloco
+            currentManualStep = (currentManualStep + 1) % steps.length;
+
+            // Adiciona a classe 'active' ao novo bloco
+            steps[currentManualStep].classList.add('active');
+        }
+
+        // Função para voltar ao bloco anterior
+        function prevStep() {
+            const steps = document.querySelectorAll('.step');
+            // Remove a classe 'active' do bloco atual
+            steps[currentManualStep].classList.remove('active');
+
+            // Decrementa o passo, indo para o último bloco se chegar ao início
+            currentManualStep = (currentManualStep - 1 + steps.length) % steps.length;
+
+            // Adiciona a classe 'active' ao novo bloco
+            steps[currentManualStep].classList.add('active');
+        }
+
+        // Modificar a função stopLoop para des-selecionar todos os blocos
+        function stopLoop() {
+            clearInterval(interval); // Limpa o intervalo
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => step.classList.remove('active')); // Remove a classe 'active' de todas as etapas
+            currentManualStep = 0; // Reseta o passo manual também
+        }
+
+
+        function goBack() {
+            window.location.href = 'simulador_inicio.html';
+        }
+    </script>
+</body>
+</html>
