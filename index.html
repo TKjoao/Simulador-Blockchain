@@ -10,27 +10,36 @@
     <h1 class="title">Bem-vindo ao Sistema</h1>
     <div class="button-container">
         <button class="circle-button" onclick="goToUserPage()">Usuário</button>
-        <button class="circle-button" onclick="promptAdminPassword()">Administrador</button>
+        <button class="circle-button" onclick="promptAdminLogin()">Administrador</button>
         <button class="circle-button" onclick="Simulador()">Simulador</button>
-        
     </div>
-</body>
+    
     <script src="script.js"></script>
     <script>
         function Simulador() {
             window.location.href = 'simulador_inicio.html';
-}
+        }
 
         function goToUserPage() {
             window.location.href = 'usuario.html';
         }
-        function promptAdminPassword() {
+
+        function promptAdminLogin() {
+            const username = prompt("Por favor, insira o nome de usuário do administrador:");
             const password = prompt("Por favor, insira a senha do administrador:");
-            const correctPassword = "asdf"; 
-            if (password === correctPassword) {
+
+            // Usuários e senhas predefinidos
+            const adminCredentials = {
+                "admin": "asdf",
+                "adm01": "123456",
+                "adm02": "987654"
+            };
+
+            // Validação de login
+            if (adminCredentials[username] && adminCredentials[username] === password) {
                 window.location.href = 'admin.html'; 
             } else {
-                alert("Senha incorreta!");
+                alert("Usuário ou senha incorretos!");
             }
         }
     </script>
